@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="477.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllerMenuScreen">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="618.0" layoutX="-13.0" layoutY="-3.0" stroke="BLACK" strokeType="INSIDE" width="484.0" />
+      <ImageView fitHeight="618.0" fitWidth="618.0" layoutX="-141.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../res/Lab.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="playerSprite" fitHeight="311.0" fitWidth="325.0" layoutX="80.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../res/CharacterBoy.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="vsaiBut" fitHeight="68.0" fitWidth="160.0" layoutY="539.0" onMousePressed="#butPress" onMouseReleased="#butRelease" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../res/VSAIbutton.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="68.0" fitWidth="145.0" layoutX="332.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../res/VSAIbutton.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="playerInfo" contentDisplay="CENTER" layoutX="138.0" layoutY="192.0" prefHeight="38.0" prefWidth="200.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB" size="15.0" />
+         </font></Label>
+      <ImageView fx:id="expBar" fitHeight="106.0" fitWidth="301.0" layoutX="82.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../res/ProgBar/ProgBar.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="exitBut" fitHeight="68.0" fitWidth="63.0" layoutX="165.0" layoutY="540.0" onMousePressed="#butPress" onMouseReleased="#butRelease" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../res/exitBut.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="pokeBut" fitHeight="67.0" fitWidth="63.0" layoutX="247.0" layoutY="540.0" onMousePressed="#pokeInvBut" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../res/pokeBut.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Pane fx:id="pokeInv" layoutX="-6.0" prefHeight="533.0" prefWidth="484.0">
+         <children>
+            <ImageView fitHeight="533.0" fitWidth="504.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../res/PokeInv.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="sel1" fitHeight="50.0" fitWidth="36.0" layoutX="59.0" layoutY="99.0" onMouseClicked="#deSelectPok" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="sel2" fitHeight="50.0" fitWidth="42.0" layoutX="134.0" layoutY="99.0" onMouseClicked="#deSelectPok" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="sel3" fitHeight="50.0" fitWidth="42.0" layoutX="207.0" layoutY="99.0" onMouseClicked="#deSelectPok" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="lvl11" fitHeight="38.0" fitWidth="42.0" layoutX="53.0" layoutY="203.0" onMouseClicked="#selectPok" pickOnBounds="true" preserveRatio="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ImageView>
+            <ImageView fx:id="lvl12" fitHeight="38.0" fitWidth="42.0" layoutX="113.0" layoutY="203.0" onMouseClicked="#selectPok" pickOnBounds="true" preserveRatio="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ImageView>
+            <ImageView fx:id="lvl13" fitHeight="38.0" fitWidth="42.0" layoutX="174.0" layoutY="203.0" onMouseClicked="#selectPok" pickOnBounds="true" preserveRatio="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ImageView>
+            <ImageView fx:id="lvl21" disable="true" fitHeight="44.0" fitWidth="42.0" layoutX="53.0" layoutY="257.0" onMouseClicked="#selectPok" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../res/lock.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="lvl22" disable="true" fitHeight="44.0" fitWidth="49.0" layoutX="113.0" layoutY="257.0" onMouseClicked="#selectPok" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../res/lock.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="lvl23" disable="true" fitHeight="44.0" fitWidth="49.0" layoutX="174.0" layoutY="257.0" onMouseClicked="#selectPok" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../res/lock.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="lvl33" disable="true" fitHeight="44.0" fitWidth="49.0" layoutX="174.0" layoutY="313.0" onMouseClicked="#selectPok" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../res/lock.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="lvl32" disable="true" fitHeight="44.0" fitWidth="49.0" layoutX="113.0" layoutY="313.0" onMouseClicked="#selectPok" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../res/lock.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="lvl31" disable="true" fitHeight="44.0" fitWidth="49.0" layoutX="53.0" layoutY="313.0" onMouseClicked="#selectPok" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../res/lock.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="lvl41" disable="true" fitHeight="44.0" fitWidth="49.0" layoutX="53.0" layoutY="368.0" onMouseClicked="#selectPok" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../res/lock.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="lvl42" disable="true" fitHeight="44.0" fitWidth="49.0" layoutX="113.0" layoutY="368.0" onMouseClicked="#selectPok" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../res/lock.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="lvl43" disable="true" fitHeight="44.0" fitWidth="49.0" layoutX="174.0" layoutY="368.0" onMouseClicked="#selectPok" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../res/lock.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="lvl51" disable="true" fitHeight="44.0" fitWidth="49.0" layoutX="113.0" layoutY="424.0" onMouseClicked="#selectPok" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../res/lock.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="viewPok" fitHeight="77.0" fitWidth="92.0" layoutX="362.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ImageView>
+            <Label layoutX="228.0" layoutY="203.0" prefHeight="38.0" prefWidth="92.0" text="Lvl.1" />
+            <Label layoutX="228.0" layoutY="260.0" prefHeight="38.0" prefWidth="92.0" text="Lvl.2" />
+            <Label layoutX="228.0" layoutY="313.0" prefHeight="38.0" prefWidth="92.0" text="Lvl.3" />
+            <Label layoutX="228.0" layoutY="368.0" prefHeight="38.0" prefWidth="92.0" text="Lvl.4" />
+            <Label layoutX="228.0" layoutY="427.0" prefHeight="38.0" prefWidth="92.0" text="Lvl.5" />
+            <Label fx:id="pokNamLvl" alignment="CENTER" layoutX="353.0" layoutY="280.0" prefHeight="38.0" prefWidth="110.0" />
+            <Label fx:id="pokPs" alignment="CENTER" layoutX="362.0" layoutY="305.0" prefHeight="38.0" prefWidth="92.0" />
+            <Label fx:id="pokAttk" alignment="CENTER" layoutX="362.0" layoutY="323.0" prefHeight="38.0" prefWidth="92.0" />
+            <Label fx:id="pokDef" alignment="CENTER" layoutX="362.0" layoutY="340.0" prefHeight="38.0" prefWidth="92.0" />
+            <Label fx:id="pokVel" alignment="CENTER" layoutX="362.0" layoutY="367.0" prefHeight="19.0" prefWidth="92.0" />
+            <Label fx:id="Attk1lbl" alignment="CENTER" layoutX="352.0" layoutY="386.0" prefHeight="38.0" prefWidth="110.0" />
+            <Label fx:id="Attk2lbl" alignment="CENTER" layoutX="352.0" layoutY="405.0" prefHeight="38.0" prefWidth="110.0" />
+            <Label fx:id="Attk3lbl" alignment="CENTER" layoutX="352.0" layoutY="424.0" prefHeight="38.0" prefWidth="110.0" />
+            <Label fx:id="Attk4lbl" alignment="CENTER" layoutX="352.0" layoutY="443.0" prefHeight="38.0" prefWidth="110.0" />
+            <ImageView fx:id="pokType1" fitHeight="19.0" fitWidth="21.0" layoutX="435.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pokType2" fitHeight="19.0" fitWidth="21.0" layoutX="416.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
+      <Rectangle fx:id="extRec" arcHeight="5.0" arcWidth="5.0" disable="true" height="638.0" layoutX="500.0" layoutY="-3.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="484.0" />
+      <ImageView fx:id="extImg" fitHeight="67.0" fitWidth="63.0" layoutX="204.0" layoutY="274.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../res/pokeballRotate.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="extTxt" fitHeight="150.0" fitWidth="200.0" layoutX="139.0" layoutY="362.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../res/exitText.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

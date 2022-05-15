@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllerStartScreen">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="618.0" layoutX="-13.0" layoutY="-3.0" stroke="BLACK" strokeType="INSIDE" width="484.0" />
+      <ImageView fx:id="profH" fitHeight="248.0" fitWidth="173.0" layoutX="172.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../res/profesor.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="textBox" fitHeight="229.0" fitWidth="454.0" layoutX="8.0" layoutY="453.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../res/dialogBox.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="dialogText" alignment="TOP_LEFT" layoutX="27.0" layoutY="469.0" onKeyPressed="#nextLine" prefHeight="108.0" prefWidth="418.0" wrapText="true">
+         <font>
+            <Font name="Impact" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="option2" layoutX="367.0" layoutY="548.0" prefHeight="29.0" prefWidth="78.0" text="Chico" visible="false" />
+      <Label fx:id="option1" layoutX="367.0" layoutY="509.0" prefHeight="29.0" prefWidth="78.0" text="Chica" visible="false" />
+      <Label fx:id="selector" layoutX="343.0" layoutY="509.0" onKeyPressed="#selectorMove" prefHeight="29.0" prefWidth="15.0" text="&gt;" visible="false" />
+      <Label fx:id="nameChar" layoutX="102.0" layoutY="505.0" onKeyPressed="#nameTyper" prefHeight="54.0" prefWidth="30.0">
+         <font>
+            <Font name="Impact" size="37.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameChar1" layoutX="138.0" layoutY="505.0" prefHeight="54.0" prefWidth="30.0">
+         <font>
+            <Font name="Impact" size="37.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameChar2" layoutX="173.0" layoutY="505.0" prefHeight="54.0" prefWidth="30.0">
+         <font>
+            <Font name="Impact" size="37.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameChar3" layoutX="209.0" layoutY="505.0" prefHeight="54.0" prefWidth="30.0">
+         <font>
+            <Font name="Impact" size="37.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameChar4" layoutX="244.0" layoutY="505.0" prefHeight="54.0" prefWidth="30.0">
+         <font>
+            <Font name="Impact" size="37.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameChar5" layoutX="280.0" layoutY="505.0" prefHeight="54.0" prefWidth="30.0">
+         <font>
+            <Font name="Impact" size="37.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameChar6" layoutX="316.0" layoutY="505.0" prefHeight="54.0" prefWidth="30.0">
+         <font>
+            <Font name="Impact" size="37.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameChar7" layoutX="351.0" layoutY="505.0" prefHeight="54.0" prefWidth="30.0">
+         <font>
+            <Font name="Impact" size="37.0" />
+         </font>
+      </Label>
+      <Label fx:id="charBox" layoutX="101.0" layoutY="518.0" prefHeight="54.0" prefWidth="19.0" text="_" visible="false">
+         <font>
+            <Font name="Impact" size="37.0" />
+         </font>
+      </Label>
+      <Label fx:id="charBox1" layoutX="137.0" layoutY="518.0" prefHeight="54.0" prefWidth="19.0" text="_" visible="false">
+         <font>
+            <Font name="Impact" size="37.0" />
+         </font>
+      </Label>
+      <Label fx:id="charBox2" layoutX="172.0" layoutY="518.0" prefHeight="54.0" prefWidth="19.0" text="_" visible="false">
+         <font>
+            <Font name="Impact" size="37.0" />
+         </font>
+      </Label>
+      <Label fx:id="charBox3" layoutX="208.0" layoutY="518.0" prefHeight="54.0" prefWidth="19.0" text="_" visible="false">
+         <font>
+            <Font name="Impact" size="37.0" />
+         </font>
+      </Label>
+      <Label fx:id="charBox4" layoutX="243.0" layoutY="518.0" prefHeight="54.0" prefWidth="19.0" text="_" visible="false">
+         <font>
+            <Font name="Impact" size="37.0" />
+         </font>
+      </Label>
+      <Label fx:id="charBox5" layoutX="279.0" layoutY="518.0" prefHeight="54.0" prefWidth="19.0" text="_" visible="false">
+         <font>
+            <Font name="Impact" size="37.0" />
+         </font>
+      </Label>
+      <Label fx:id="charBox6" layoutX="315.0" layoutY="518.0" prefHeight="54.0" prefWidth="19.0" text="_" visible="false">
+         <font>
+            <Font name="Impact" size="37.0" />
+         </font>
+      </Label>
+      <Label fx:id="charBox7" layoutX="350.0" layoutY="518.0" prefHeight="54.0" prefWidth="19.0" text="_" visible="false">
+         <font>
+            <Font name="Impact" size="37.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="chngRec" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="662.0" layoutX="-58.0" layoutY="-37.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="539.0" />
+   </children>
+</AnchorPane>

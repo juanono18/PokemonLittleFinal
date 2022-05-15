@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllerFirstScreen">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="618.0" layoutX="-13.0" layoutY="-3.0" stroke="BLACK" strokeType="INSIDE" width="484.0" />
+      <ImageView fx:id="bkg" fitHeight="618.0" fitWidth="616.0" layoutX="-4.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../res/titleScreen.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="title" fitHeight="309.0" fitWidth="665.0" layoutX="-87.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../res/title1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="StrtBut" fitHeight="16.0" fitWidth="167.0" layoutX="188.0" layoutY="586.0" onKeyPressed="#changeScreen" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../res/font.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="wRec" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="646.0" layoutX="-17.0" layoutY="-28.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="501.0" />
+   </children>
+</AnchorPane>
