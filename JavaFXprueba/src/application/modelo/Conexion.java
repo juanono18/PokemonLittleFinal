@@ -277,7 +277,7 @@ import application.DataHandler;
 			String P2Pok="";
 			try {
 				P2 = Integer.parseInt(getData("codP1", "partida", "order by cod desc"));
-				P2Pok=getData("P1Poks", "partida", "where codP2="+P2);
+				P2Pok=getData("P1Poks", "partida", "where codP1="+P2);
 				
 			} catch (NumberFormatException | SQLException e) {
 				// TODO Auto-generated catch block
