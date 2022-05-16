@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllerCombatScreen">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllerCombatScreenPVP">
    <children>
       <ImageView fitHeight="500.0" fitWidth="547.0" layoutX="-77.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -211,7 +211,7 @@
       <Pane fx:id="vsPanel" disable="true" layoutX="-3.0" layoutY="-1.0" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="WHITE" height="663.0" layoutX="-3.0" stroke="BLACK" strokeType="INSIDE" width="480.0" />
-            <ImageView fitHeight="293.0" fitWidth="274.0" layoutX="250.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="adv" fitHeight="293.0" fitWidth="274.0" layoutX="250.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../res/CharacterBoy.gif" />
                </image>

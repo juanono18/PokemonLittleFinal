@@ -252,8 +252,97 @@ import application.DataHandler;
 				e.printStackTrace();
 			}
 		}
+		public void crearPartida(String pokemons, String playerID) {
+			String consulta = "INSERT INTO partida (codP1,codP2,P1Poks,P2Poks) VALUES (?,?,?,?)"; //Consulta a realizar 
+			PreparedStatement statement = null; //Preparar la query
+
+			try {
+				statement = Conexion.getConexion().prepareStatement(consulta); // preparo la consulta 
+				statement.setInt(1,Integer.parseInt(playerID));
+				statement.setInt(2,0);
+				statement.setString(3,pokemons);
+				statement.setString(4,"nan");
+				statement.execute();
 				
-	
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.print("ERROR AL HACER EL INSERT PARTIDA");
+			}
+		}
+				
+		public void mergeMatch(String playerID, String P1poks) {
+			// TODO Auto-generated method stub
+			int P2=0;
+			String P2Pok="";
+			try {
+				P2 = Integer.parseInt(getData("codP1", "partida", "order by cod desc"));
+				P2Pok=getData("P1Poks", "partida", "where codP2="+P2);
+				
+			} catch (NumberFormatException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String consulta = "truncate partida"; //Consulta a realizar 
+			PreparedStatement statement = null; //Preparar la query
+			try {
+				statement = Conexion.getConexion().prepareStatement(consulta);
+				statement.execute();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			consulta = "INSERT INTO partida (codP1,codP2,P1Poks,P2Poks) VALUES (?,?,?,?)"; //Consulta a realizar 
+			statement = null; //Preparar la query
+
+			try {
+				statement = Conexion.getConexion().prepareStatement(consulta); // preparo la consulta 
+				statement.setInt(1,Integer.parseInt(playerID));
+				statement.setInt(2,P2);
+				statement.setString(3,P1poks);
+				statement.setString(4,P2Pok);
+				statement.execute();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.print("ERROR AL HACER EL INSERT PARTIDA");
+			}
+			
+		}
+		public void setTurn(String turn) {
+			String consulta = "INSERT INTO acciones (turn) VALUES (?)"; //Consulta a realizar 
+			PreparedStatement statement = null; //Preparar la query
+
+			try {
+				statement = Conexion.getConexion().prepareStatement(consulta); // preparo la consulta 
+				statement.setString(1,turn);
+				statement.execute();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.print("ERROR AL HACER EL INSERT ACCION");
+			}
+		}
+		public void setTurnAcction(String turn,String accion,int dmg,String currSenPok) {
+			String consulta = "INSERT INTO acciones (turn,accion,dmg,currSenPok) VALUES (?,?,?,?)"; //Consulta a realizar 
+			PreparedStatement statement = null; //Preparar la query
+
+			try {
+				statement = Conexion.getConexion().prepareStatement(consulta); // preparo la consulta 
+				statement.setString(1,turn);
+				statement.setString(2,accion);
+				statement.setInt(3,dmg);
+				statement.setString(4,currSenPok);
+				statement.execute();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.print("ERROR AL HACER EL INSERT ACCION");
+			}
+		}
 	
 			
 		
@@ -273,6 +362,7 @@ import application.DataHandler;
 		public static void setConexion(Connection conexion) {
 			Conexion.conexion = conexion;
 		}
+		
 
 }
 

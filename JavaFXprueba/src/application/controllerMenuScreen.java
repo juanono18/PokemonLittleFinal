@@ -16,6 +16,7 @@ import application.modelo.Pokemon;
 import application.modelo.pokemons.Charizard;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
+import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -37,7 +38,7 @@ public class controllerMenuScreen implements Initializable {
 	@FXML
 	Pane pokeInv;
 	@FXML
-	ImageView vsaiBut,playerSprite,exitBut,pokeBut,expBar,extImg,extTxt,
+	ImageView vsaiBut,pvpBut,playerSprite,exitBut,pokeBut,expBar,extImg,extTxt,
 	lvl11,lvl12,lvl13,lvl21,lvl22,lvl23,lvl31,lvl32,lvl33,lvl41,lvl42,lvl43,lvl51,sel1,sel2,sel3,viewPok,pokType1,pokType2;
 	@FXML
 	Label playerInfo,pokNamLvl,pokPs,pokAttk,pokDef,pokVel,Attk1lbl,Attk2lbl,Attk3lbl,Attk4lbl;
@@ -115,6 +116,15 @@ public class controllerMenuScreen implements Initializable {
 	public void butPress(MouseEvent e) {
 		ImageView element = (ImageView) e.getSource();
 		String iD = element.getId();
+		if(iD.equals("pvpBut")) {
+			element.setImage(new Image(getClass().getResource("res/VSAIbuttonPressed.png").toExternalForm()));
+			try {
+				searchMatchPVP();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 		if(iD.equals("vsaiBut")) {
 			element.setImage(new Image(getClass().getResource("res/VSAIbuttonPressed.png").toExternalForm()));
 			searchMatch();
@@ -129,6 +139,9 @@ public class controllerMenuScreen implements Initializable {
 	public void butRelease(MouseEvent e) {
 		ImageView element = (ImageView) e.getSource();
 		String iD = element.getId();
+		if(iD.equals("pvpBut")) {
+			element.setImage(new Image(getClass().getResource("res/VSAIbutton.png").toExternalForm()));
+		}
 		if(iD.equals("vsaiBut")) {
 			element.setImage(new Image(getClass().getResource("res/VSAIbutton.png").toExternalForm()));
 		}
@@ -247,6 +260,10 @@ public class controllerMenuScreen implements Initializable {
 		}
 			
 	}
+	public void deSelectPok(MouseEvent e) {
+		ImageView eventElement = (ImageView) e.getSource();
+		eventElement.setImage(null);
+	}
 	public String getSelectedPokemon() {
 		ImageView[] selectores= new ImageView[] {sel1,sel2,sel3};
 		String currPok="";
@@ -263,10 +280,6 @@ public class controllerMenuScreen implements Initializable {
 		return pokemon;
 	}
 	
-	public void deSelectPok(MouseEvent e) {
-		ImageView eventElement = (ImageView) e.getSource();
-		eventElement.setImage(null);
-	}
 	public void searchMatch() {
 		try {
 			fw.write(getSelectedPokemon());
@@ -308,6 +321,72 @@ public class controllerMenuScreen implements Initializable {
 		
 		
 	}
+	public void searchMatchPVP() throws SQLException {
+		
+		extTxt.setImage(new Image(getClass().getResource("res/matchSearchTxt.png").toExternalForm()));
+		extRec.setLayoutX(-3);
+		FadeTransition ft = new FadeTransition(Duration.millis(250),extRec);
+		ft.setFromValue(0);
+		ft.setToValue(1);
+		ft.setAutoReverse(true);
+		FadeTransition ft2 = new FadeTransition(Duration.millis(300),extImg);
+		ft2.setFromValue(0);
+		ft2.setToValue(1);
+		ft2.setAutoReverse(true);
+		FadeTransition ft3 = new FadeTransition(Duration.millis(350),extTxt);
+		ft3.setFromValue(0);
+		ft3.setToValue(1);
+		ft3.setAutoReverse(true);
+		
+		Timeline changeScreenT = new Timeline(
+				new KeyFrame(Duration.seconds(0.1), event -> {bkgMusic.stop();mh.soundEffectChooser("src/application/res/mainMenuBeep.wav").play();}),
+	            new KeyFrame(Duration.seconds(2), event -> {ft.play();ft2.play();ft3.play();}),
+	            new KeyFrame(Duration.seconds(0.1), event -> {
+	            	try {
+						matchSearcher();
+					} catch (SQLException | IOException | InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	            })
+	            );
+	          
+	        
+		changeScreenT.play();
+		
+		
+		
+		
+	}
+	private void matchSearcher() throws SQLException, IOException, InterruptedException {
+		conex.updateData("players", "Smatch=true", "where cod="+dh.getPlayerCod());
+		Boolean searching= true;
+		while(searching) {
+			ArrayList<String> playerState = conex.getMultipleData("Smatch", "players", "where cod!="+dh.getPlayerCod());
+			ArrayList<String> playerCode = conex.getMultipleData("cod", "players", "where cod!="+dh.getPlayerCod());
+			for(int a=0;a<playerState.size();a++) {
+				if(playerState.get(a).equals("1")) {
+					System.out.println("Partida Encontrada");
+					fw.write(playerCode.get(a));
+					fw.flush();
+					matchFound();
+					searching=false;
+					return;
+				}else {
+					System.out.println("Buscando...");
+				}
+			}
+
+		}
+	}
+	private void matchFound() throws IOException {
+		// TODO Auto-generated method stub
+		conex.updateData("players", "Smatch=false", "where cod="+dh.getPlayerCod());
+		dh.sendMPmatchData(getSelectedPokemon());
+		mh.changeScreen("vista/CombateScreenPVP.fxml",extRec);
+	}
+	
+	
 	public void returnToMainMenu() {
 		extRec.setLayoutX(-3);
 		FadeTransition ft = new FadeTransition(Duration.millis(250),extRec);

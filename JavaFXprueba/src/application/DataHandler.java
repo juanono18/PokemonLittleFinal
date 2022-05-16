@@ -68,6 +68,16 @@ public class DataHandler {
 		return finishName;
 		
 	}
+	public Player getPlayerFromCod(String plyCod) {
+		Conexion conex = new Conexion();
+		File f = new File("src/application/files/saveFile.txt");
+		String username="";
+		Player ply = new Player("","",0,0);
+		ply = conex.getPlayerData(Integer.parseInt(plyCod));
+
+		return ply;
+		
+	}
 	public Player getPlayer() {
 		Conexion conex = new Conexion();
 		File f = new File("src/application/files/saveFile.txt");
@@ -188,15 +198,73 @@ public class DataHandler {
 		return returnPok;
 		
 	}
-	public ArrayList<Pokemon> getPokemonFromTxt(Player ply,String pokemonTxt) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	public ArrayList<Pokemon> getPVPPokemonFromTxt(int player,String playerCod) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, SQLException, ClassNotFoundException{
+		Conexion conex = new Conexion();
+		String pokemonTxt="";
+		if(player==1) {
+			pokemonTxt=conex.getData("P1Poks", "partida","where codP1="+playerCod );
+
+		}else if(player==2) {
+			pokemonTxt=conex.getData("P2Poks", "partida","where codP2="+playerCod);
+		}
 		System.out.println(pokemonTxt);
 		String[] pokemonTxtArr = pokemonTxt.split("\\|");
 		ArrayList<Pokemon> pokemon = new ArrayList<Pokemon>();
 		ArrayList<String> pokemonNames = new ArrayList<String>();
 		ArrayList<String> codPoks = new ArrayList<String>();
 		ArrayList<String> currentCodPoks = new ArrayList<String>();
+		codPoks = conex.getMultipleData("codPok","asignacion","where codP='"+playerCod+"'");
+		
+		for(int i=0;i<codPoks.size();i++) {
+			String currName=conex.getData("pkname","pokemon","where cod='"+codPoks.get(i)+"'");
+			for(int a=0;a<pokemonTxtArr.length;a++) {
+				
+				if(currName.equals("application.modelo.pokemons."+pokemonTxtArr[a])) {
+					System.out.println(("CurrName: "+currName + "= application.modelo.pokemons."+pokemonTxtArr[a]));
+					pokemonNames.add(conex.getData("pkname","pokemon","where cod='"+codPoks.get(i)+"'"));
+					currentCodPoks.add(codPoks.get(i));
+				}
+				
+			}
+			
+		}
+		for(int e=0;e<pokemonNames.size();e++) {
+			System.out.println(pokemonNames.get(e));
+			String PokeBS = pokemonNames.get(e);
+			String[] PokeS = PokeBS.split("\\.");
+			String alias=conex.getData("alias","pokemon","where cod='"+currentCodPoks.get(e)+"'");
+			int vida= Integer.parseInt(conex.getData("vida","pokemon","where cod='"+currentCodPoks.get(e)+"'"))
+			,defensa=Integer.parseInt(conex.getData("defensa","pokemon","where cod='"+currentCodPoks.get(e)+"'"))
+			,ataque=Integer.parseInt(conex.getData("atk","pokemon","where cod='"+currentCodPoks.get(e)+"'"))
+			,experiencia=Integer.parseInt(conex.getData("exp","pokemon","where cod='"+currentCodPoks.get(e)+"'"))
+			,nivel=Integer.parseInt(conex.getData("lvl","pokemon","where cod='"+currentCodPoks.get(e)+"'"))
+			,velocidad=Integer.parseInt(conex.getData("velocidad","pokemon","where cod='"+currentCodPoks.get(e)+"'"));
+			String attk1=conex.getData("attk1","pokemon","where cod='"+currentCodPoks.get(e)+"'")
+			,attk2 = conex.getData("attk2","pokemon","where cod='"+currentCodPoks.get(e)+"'")
+			,attk3 = conex.getData("attk3","pokemon","where cod='"+currentCodPoks.get(e)+"'")
+			,attk4 = conex.getData("attk4","pokemon","where cod='"+currentCodPoks.get(e)+"'");
+			; 
+			Class<?> clas = Class.forName(pokemonNames.get(e));
+			pokemon.add( (Pokemon) clas.getConstructor(
+					String.class,int.class,int.class,int.class,int.class,int.class,int.class,String.class,String.class,String.class,String.class
+					).newInstance(
+							alias,vida,defensa,ataque,experiencia,nivel,velocidad,attk1,attk2,attk3,attk4));
+			
+		}
+		return pokemon;
+		
+	}	
+	public ArrayList<Pokemon> getPokemonFromTxt(Player ply,String pokemonTxt) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		Conexion conex = new Conexion();
+		System.out.println(pokemonTxt);
+		String[] pokemonTxtArr = pokemonTxt.split("\\|");
+		ArrayList<Pokemon> pokemon = new ArrayList<Pokemon>();
+		ArrayList<String> pokemonNames = new ArrayList<String>();
+		ArrayList<String> codPoks = new ArrayList<String>();
+		ArrayList<String> currentCodPoks = new ArrayList<String>();
 		String codP = getPlayerCod();
+			
+
 		codPoks = conex.getMultipleData("codPok","asignacion","where codP='"+codP+"'");
 		
 		for(int i=0;i<codPoks.size();i++) {
@@ -551,4 +619,17 @@ public class DataHandler {
 		return trueDMG;
 		
 	}
+	public void sendMPmatchData(String pokemons) {
+		Conexion conex = new Conexion();
+		conex.crearPartida(pokemons,getPlayerCod());
+		try {
+			if(getPlayerCod().equals(conex.getData("codP1", "partida","order by cod asc" ))) {
+				conex.mergeMatch(getPlayerCod(),pokemons);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
+}
